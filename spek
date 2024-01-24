@@ -1,0 +1,43 @@
+#!/bin/bash
+# Script untuk menampilkan informasi tentang Shell yang Bagus 
+# Author: Tamada
+tampilkan_informasi() {
+echo "  _________    __  ______    ____  ___  "
+echo " /_  __/   |  /  |/  /   |  / __ \/   | "
+echo "  / / / /| | / /|_/ / /| | / / / / /| | "
+echo " / / / ___ |/ /  / / ___ |/ /_/ / ___ | "
+echo "/_/ /_/  |_/_/  /_/_/  |_/_____/_/  |_| "
+echo " "
+echo " "
+}
+
+tampilkan_informasi
+
+echo "Sistem Operasi: $(uname -a)"
+echo "Versi Kernel: $(uname -r)"
+echo "Desktop Environment: $XDG_CURRENT_DESKTOP"
+
+echo "CPU: $(grep 'model name' /proc/cpuinfo | head -n1 | cut -d ':' -f2 | awk '{$1=$1};1')"
+echo "RAM: $(free -h | awk '/^Mem/ {print $3 "/" $2}')"
+
+echo "GPU: $(lspci | grep -i 'VGA\|3D\|Display')"
+
+
+echo "Penyimpanan: $(df -h | awk '/^\/dev\// {print $2 " used: " $3 "/" $4}')"
+
+
+echo "Distribusi: $(lsb_release -d | cut -d ':' -f2 | awk '{$1=$1};1')"
+
+
+echo "Tanggal dan Waktu: $(date)"
+
+
+echo "IP Address: $(hostname -I | awk '{print $1}')"
+
+
+echo "User: $USER"
+echo""
+
+current_date=$(date '+%d-%m-%Y')
+echo "Tanggal: $current_date"
+echo""
